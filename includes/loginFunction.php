@@ -89,6 +89,31 @@
 				exit(); 
 			} 
     	}
+    	
+    	
+    	function userLogin($email, $password) {
+    		$password = md5($password);
+    	
+    		//Check user email is unique
+    		$email = strtolower($email);
+    		$query = " SELECT * 
+                         FROM tblUser
+			            WHERE emailAddress = '$email'
+			              AND password = '$password'
+			         ";
+			$result = mysql_query($query);
+	        $row = mysql_fetch_array($result);
+	        
+	        $userId = $row['userId'];
+	        
+	        if($userID == "") {
+	        	//Raise error: Wrong Email ID or Password
+	        	
+	        	exit;
+	        }
+	        
+	        return $userId;
+    	}
     
     }
     
